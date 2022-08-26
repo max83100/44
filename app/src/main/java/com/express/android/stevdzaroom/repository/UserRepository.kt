@@ -3,6 +3,9 @@ package com.express.android.stevdzaroom.repository
 import androidx.lifecycle.LiveData
 import com.express.android.stevdzaroom.data.UserDao
 import com.express.android.stevdzaroom.model.User
+import kotlinx.coroutines.flow.Flow
+
+
 
 class UserRepository(private val userDao: UserDao) {
 
@@ -22,5 +25,8 @@ class UserRepository(private val userDao: UserDao) {
 
     suspend fun deleteAllUsers(){
         userDao.deleteAllUsers()
+    }
+    fun search(searchQuery: String): Flow<List<User>> {
+        return userDao.search.(searchQuery)
     }
 }
